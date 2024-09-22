@@ -1,0 +1,70 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(26, 26, 26);
+    color: rgb(229, 229, 229);
+}
+
+form { 
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+#schedule-visual {
+    width: calc(24rem*1.5);
+    height: 3rem;
+    outline: 1px solid rgb(216, 216, 216);
+    background-color: blue;
+    border-radius: .5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+#schedule-visual > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+
+
+
+.schedule-section {
+    background-color: white;
+    height: 2.5rem;
+    border-left: 1px solid black;
+    border-right: 1px solid black; 
+    border-radius: .2rem;
+    z-index: 3;
+    border: 2px solid black;
+    flex-grow: 1;
+    
+}
+
+.schedule-section p {
+    color: blue;
+    font-size: .5em;
+}
+
+.background-grid {
+    position: absolute;
+    z-index: 1;
+    border: 1px solid white;
+    width: 1.5rem;
+    height: 3rem;
+
+}
+
+.background-grid p {
+    color: gray;
+    font-size: .8em;
+}
