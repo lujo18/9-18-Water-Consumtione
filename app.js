@@ -12,6 +12,14 @@ app.get("/", (req, res) => {
     res.render("home", {});
 })
 
+app.get("/goal", (req, res) => {
+    res.render("goal", {});
+})
+
+app.get("/progress", (req, res) => {
+    res.render("progress", {})
+})
+
 app.listen(port, () => {
     console.log(`App is listening on port ${port}`);
 })

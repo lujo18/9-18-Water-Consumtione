@@ -4,51 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="static/styles/styles.css">
 </head>
 <body>
-    <section>
-        <h1>Water Tracker and Reminder</h1>
-
-        <form id="goal-form" class="group">
-            <h1>Your Goal</h1>
-            
-            <fieldset>
-                <legend>How much water do you want to drink a day?</legend>
-                <label for="male-goal"><input checked name="water-goal" type="radio" id="male-goal" class="goal-check" value="15.5">15.5 Cups / 3.7 Liters</label>
-                <label for="female-goal"><input name="water-goal" type="radio" id="female-goal" class="goal-check" value="11.5">11.5 Cups / 2.7 liters</label>
-                <label for="custom-goal"><input name="water-goal" type="radio" id="custom-goal" class="goal-check" value="0"><input type="number" id="custom-goal-input" min="1" max="100" value="14"> Cups</label>
-            </fieldset>
-            <label>How early do you want to stop drinking water?
-            <input type="number" id="stop-hours-input" value="2" min="0">
-            </label>
-
-            <label>Set your goal wake time
-            <input type="time" id="wake-input" value="08:00">
-            </label>
-
-            <label>Set your goal sleep time
-            <input type="time" id="sleep-input" value="22:00">
-            </label>
-            <!--
-            <label for="">Set your drink increments
-            <input type="number" id="drink-increments" value="1" min="1">
-            </label>-->
-            <button type="submit">Set Goal</button>
-        </form>
-        <section class="group">
     
-            <h1>Your Schedule</h1>
-            <p id="goal-display"></p>
-            <div id="schedule-visual">
-                <div id="time-blocks"></div>
-                <div id="bg-grid"></div>
-            </div>
-            <p>Hours / Day</p>
-        </section>
-    </section>
-
-
-    <script src="static/scripts/script.js"></script>
 </body>
 </html>

@@ -16,12 +16,13 @@ let wakeTime = [];
 let sleepTime = [];
 //let drinkIncrements;
 
-let waterGoals = [];
+let waterGoals = [];  // hourlyWaterGoals in localStorage
 
 const VISUAL_MULTIPLIER = 2;
 
 customGoalInput.onclick = () => {
     let customCheck = document.querySelector("input#custom-goal").checked = true;
+    updateSystem();
 }
 
 function convertTime(value) {
@@ -66,6 +67,7 @@ async function visualizeSchedule() {
     }
 
 
+    // Sets styling for water blocks so they go one after another.
     scheduleVisual.querySelector("#time-blocks").style.marginLeft = `${(wakeTime[0] - 1) * VISUAL_MULTIPLIER}rem`
     scheduleVisual.querySelector("#time-blocks").style.width = `${((stopDrinkingTime[0] + 1 ) - wakeTime[0]) * VISUAL_MULTIPLIER}rem`
 
@@ -78,6 +80,7 @@ async function visualizeSchedule() {
         item.style.boxShadow = "none"
     }
     
+    // sets special styles for blocks that are wake, stop drinking and sleep time
     grids.item(wakeTime[0] -1).style.borderBottom = "2px solid yellow"
     grids.item(wakeTime[0] -1).style.boxShadow = "inset 0px -8px 5px -5px yellow"
     grids.item(sleepTime[0] -1).style.borderBottom = "2px solid blue"
@@ -89,7 +92,7 @@ async function visualizeSchedule() {
         console.log(i)
     }
 
-    
+    store("hourlyWaterGoals", waterGoals);
 
     
 }
@@ -114,7 +117,19 @@ async function updateSystem() {
 
     await visualizeSchedule();
     scheduleVisual.style.paddingLeft = `${wakeTime[0]}rem`
+
+    console.log("created local variables")
+    store("stopDrinkingTime", stopDrinkingTime);
+    store("stopDrinkingHours", stopDrinkingHours);
+    store("wakeTime", wakeTime);
+    store("sleepTime", sleepTime);
+    store("dailyGoal", dailyGoal);
+
+    console.log(wakeTime)
+    console.log(sleepTime)
 }
+
+
 
 goalForm.addEventListener("change", () => {
     updateSystem();
@@ -144,6 +159,61 @@ function goalGrid () {
     }
 }
 
+//clearStorage()
+
+// On every new load in, we either create local storage vars, or update form inputs to them.
+if (localStorage.getItem("dailyGoal") == null) {
+    // Initialize all of our local variables
+    console.log("no local variables")
+
+} else {
+    console.log("local variables found");
+    dailyGoal = retrieve("dailyGoal");
+    stopDrinkingTime = retrieve("stopDrinkingTime");
+    stopDrinkingHours = retrieve("stopDrinkingHours");
+    wakeTime = retrieve("wakeTime");
+    sleepTime = retrieve("sleepTime");
+    hourlyGoal = retrieve("hourlyWaterGoal");
+
+
+    // Set all form items to those values
+    try {
+        goalForm.querySelectorAll(".goal-check").forEach(goal => {
+            console.log("this value: " + goal.value)
+            if (goal.value == dailyGoal) {
+                goal.checked = true;
+                throw {}
+            } else if (goal.value == 0) {
+                goal.checked = true;
+                goalForm.querySelector("#custom-goal-input").value = dailyGoal;
+            }
+        });
+    } catch (e) {
+
+    }
+
+    stopHoursInput.value = stopDrinkingHours;
+
+    console.log(wakeTime)
+    console.log(sleepTime)
+    //console.log(wakeTimeInput.value);
+    //console.log(wakeTime[0] + ":" + wakeTime[1]);
+    wakeTimeInput.value = `${wakeTime[0] < 10 ? "0" + wakeTime[0] : wakeTime[0]}:${wakeTime[1] < 10 ? "0" + wakeTime[1] : wakeTime[1]}`;
+    sleepTimeInput.value = `${sleepTime[0] < 10 ? "0" + sleepTime[0] : sleepTime[0]}:${sleepTime[1] < 10 ? "0" + sleepTime[1] : sleepTime[1]}`;
+    
+}
 
 goalGrid()
 updateSystem()
+
+
+
+function clearStorage () {
+
+    localStorage.removeItem("dailyGoal");
+    localStorage.removeItem("stopDrinkingTime");
+    localStorage.removeItem("stopDrinkingHours");
+    localStorage.removeItem("wakeTime");
+    localStorage.removeItem("sleepTime");
+    localStorage.removeItem("hourlyWaterGoal");
+}
