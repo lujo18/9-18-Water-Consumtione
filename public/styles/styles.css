@@ -1,14 +1,23 @@
 @import url("https://api.fontshare.com/v2/css?f[]=quilon@400,500,600,700,1&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap");
+
+:root {
+    --primary: #88ffe2;
+
+
+    --font-secondary: 'Satoshi', sans-serif;
+}
 
 * {
     padding: 0;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
+    font-family: var(--font-secondary);
 }
 
 body {
-    background-color: rgb(26, 26, 26);
+    background-color: rgb(11, 11, 11);
     color: rgb(229, 229, 229);
     padding: 2rem;
 
@@ -29,20 +38,20 @@ h1 {
 }
 
 .group {
-    background-color: rgb(30, 30, 30);
+    
+    box-sizing: border-box;
     border-radius: 1rem;
     padding: 1rem;
     width: 100%;
-    transition: .3s ease;
     display: flex;
     flex-direction: column;
     align-items: start;
     gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.group:hover {
-    scale: 1.1;
-}
 
 
 
@@ -59,12 +68,11 @@ label {
 }
 
 
+
 #schedule-visual {
     width: calc(24rem*2);
     height: 4rem;
-    
     position: relative;
-
 }
 
 #schedule-visual > div {
@@ -84,10 +92,10 @@ label {
 }
 
 .schedule-section {
-    background: #00B4DB;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #0083B0, #00B4DB);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #0083B0, #00B4DB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    background: var(--primary);  /* fallback for old browsers */
+    /*background: -webkit-linear-gradient(to top, #0083B0, #00B4DB);  /* Chrome 10-25, Safari 5.1-6 */
+    /*background: linear-gradient(to top, #0083B0, #00B4DB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    margin-top: .2rem;
 
     height: 2.5rem;
     border-radius: 1rem;
@@ -101,6 +109,10 @@ label {
     align-items: center;
 }
 
+.schedule-section.completed {
+    background-color: rgb(27, 110, 183);
+}
+
 @keyframes slideIn {
     to {
         opacity: 1;
@@ -109,15 +121,16 @@ label {
 }
 
 .schedule-section p {
-    color: white;
+    color: #121212;
+    font-weight: bold;
     font-size: .7em;
 }
 
 .background-grid {
     position: absolute;
     z-index: 1;
-    border: 1px rgb(173, 173, 173);
-    border-style: none solid;
+    border: solid rgb(31, 25, 56);
+    border-width: 0 1px;
     width: 2rem;
     height: 4rem;
     display: flex;
@@ -127,7 +140,86 @@ label {
 }
 
 .background-grid p {
-    color: gray;
-    font-size: .8em;
+    color: rgb(177, 195, 215);
+    font-size: .5em;
     
+}
+
+
+/* PROGRESS PAGE STYLES */
+#time-tracker {
+    width: calc(24rem * 2);
+    height: 1rem;
+}
+
+.goal-progress-cont {
+    width: max-content;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+}
+
+#time-nob {
+    transition: 1s ease-out;
+    transform: translate(calc(-50% + .5px));
+}
+
+#time-background {
+    transition: 1s ease-out;
+    width: 0rem;
+    position: absolute;
+    background-color: rgb(31, 25, 56);
+    height: 4rem;
+}
+
+:root {
+    --border-completion: 0deg;
+}
+
+#total-water-pie {
+    text-align: center;
+    width: 16rem;
+    height: 16rem;
+    position: relative;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+#total-water-pie::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    transition: 1s ease;
+    background: conic-gradient(white calc(var(--border-completion)), rgb(53, 52, 57) var(--border-completion));
+    mask: radial-gradient(farthest-side, #0000 calc(99% - 2rem), #000 calc(100% - 2rem));
+}
+
+/*#total-water-pie::after {
+    content: " ";
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    z-index: 1;
+    inset: calc(50% - 2rem/2);
+    transform: rotate(calc(2rem * 3.6deg));
+    background-color: white;
+}*/
+
+#total-water-pie h1 {
+    font-size: 3em;
+    z-index: 4;
+}
+
+
+.btn {
+    border: none;
+    padding: .8rem 1.2rem;
+    border-radius: 3rem;
+    color: black;
+    background-color: rgb(95, 76, 181);
+    font-weight: bold;
 }

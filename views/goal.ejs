@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="static/styles/styles.css">
 </head>
 <body>
+    <%- include("navbar") %>
     <section>
         <h1>Water Tracker and Reminder</h1>
 
@@ -39,11 +40,7 @@
         <section class="group">
     
             <h1>Your Schedule</h1>
-            <p id="goal-display"></p>
-            <div id="schedule-visual">
-                <div id="time-blocks"></div>
-                <div id="bg-grid"></div>
-            </div>
+            <%- include("goalDisplay") %>
             <p>Hours / Day</p>
         </section>
     </section>
