@@ -93,10 +93,12 @@ function addTimeHighlights() {
 }
 
 
-
 function retrieve(item) {
     return JSON.parse(localStorage.getItem(item));
 }
+
+
+
 
 goalGrid()
 visualizeSchedule();

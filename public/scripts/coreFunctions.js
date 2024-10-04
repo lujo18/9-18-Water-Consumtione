@@ -1,5 +1,6 @@
 function retrieve(item) {
-    return JSON.parse(localStorage.getItem(item));
+    try {return JSON.parse(localStorage.getItem(item));}
+    catch (e) {return null;}
 }
 
 function store(item, value) {
