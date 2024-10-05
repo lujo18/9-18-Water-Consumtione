@@ -67,8 +67,8 @@ function getDaysInYear(date) {
     return ((year % 4 === 0 && year % 100 > 0) || (year % 400 == 0)) ? 366 : 365;
 }
 
-const numberOfAverageShowerDisplay = document.querySelector("#avg-shower");
-const numberOfAverageCarDisplay = document.querySelector("#avg-car")
+//const numberOfAverageShowerDisplay = document.querySelector("#avg-shower");
+//const numberOfAverageCarDisplay = document.querySelector("#avg-car")
 
 function updateDaysCompletedVisual() {
     let days = 0;
@@ -115,8 +115,8 @@ function updateDaysCompletedVisual() {
     totalCupsVisual.innerHTML = totalDrank
     predictionCupsVisual.innerHTML = yearPrediction
 
-    numberOfAverageShowerDisplay.innerHTML = Math.round(yearPrediction / 275.2)
-    numberOfAverageCarDisplay.innerHTML = Math.round(yearPrediction / 624000 * 100) / 100
+    //numberOfAverageShowerDisplay.innerHTML = Math.round(yearPrediction / 275.2)
+    //numberOfAverageCarDisplay.innerHTML = Math.round(yearPrediction / 624000 * 100) / 100
 }
 
 

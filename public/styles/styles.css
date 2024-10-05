@@ -60,16 +60,20 @@ h1 {
 
 .block-group {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     gap: 2rem;
     width: 100%;
+
 }
 
 .block-group > * {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
+
 
 
 
@@ -209,6 +213,11 @@ label {
     align-content: center;
 }
 
+#average-water-pie {
+    width: 12rem;
+    height: 12rem;
+}
+
 .pie-chart::before {
     content: "";
     position: absolute;
@@ -223,6 +232,7 @@ label {
 }
 
 #average-water-pie::before {
+    mask: radial-gradient(farthest-side, #0000 calc(99% - 1.5rem), #000 calc(100% - 1.5rem));
     background: conic-gradient(rgb(11, 170, 228) 0%, var(--primary) calc(var(--average-border-completion) / 2), rgb(11, 170, 228) calc(var(--average-border-completion)), var(--deactive) var(--average-border-completion));
 }
 
