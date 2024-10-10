@@ -83,12 +83,80 @@ fieldset {
     flex-direction: column;
     gap: 1rem;
     width: 100%;
+    border: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.time-goals > label {
+    display: flex;
+    flex-direction: column;
+}
+
+.goal-amounts > label {
+    border: 1.5px solid white;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 3rem;
+}
+
+.goal-amounts input[type="radio"] {
+    display: none;
+}
+
+.goal-amounts label:has(input[type="radio"]:checked) {
+    background-color: var(--primary);
+    border: none;
+    color: #000;
 }
 
 label {
     color: rgb(176, 176, 176);
 }
 
+input {
+    background-color: transparent;
+    color: white;
+    border: none;
+}
+
+.time-goals input[type="time"], .time-goals input[type="number"]{
+    padding: 1rem;
+    border: 1px solid white;
+    border-radius: 3rem;
+}
+
+#wake-input {
+    border: 1.5px solid #e5f840;
+}
+
+#sleep-input {
+    border: 1.5px solid rgb(54, 87, 255);
+}
+
+#stop-hours-input {
+    border: 1.5px solid #5f4cb5;
+    width: 12rem;
+}
+
+label:has(#stop-hours-input) {
+    position: relative;
+}
+
+label:has(#stop-hours-input)::after {
+    content: "hours before bed";
+    position: absolute;
+    bottom: 1rem;
+    right: 3rem;
+    font-size: .8em;
+    
+}
+
+legend {
+    font-size: 1em;
+    padding: 1rem;
+}
 
 
 #schedule-visual {

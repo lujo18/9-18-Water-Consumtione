@@ -7,13 +7,13 @@ document.documentElement.style.setProperty("--border-completion", `${0}deg`)
 let waterDrank = 0;
 let pieAngle = 0;
 
-const dateTest = document.querySelector("#date-test")
-let testDate = new Date(dateTest.value);
+//const dateTest = document.querySelector("#date-test")
+/*let testDate = new Date(dateTest.value);
 console.log(testDate)
 dateTest.addEventListener("change", () => {
     testDate = new Date(dateTest.value)
     checkDate()
-})
+})*/
 
 let todayDate = new Date();
 
@@ -199,7 +199,7 @@ waterControls.querySelectorAll("button").forEach(button => {
 
         changePieAngle()
         visualizeSchedule()
-        saveTodayData(testDate)
+        saveTodayData(todayDate)
     })
 })
 
@@ -244,7 +244,7 @@ function checkDate() {
 }
 
 function resetNewDay() {
-    checkProgressArray(testDate)
+    checkProgressArray(todayDate)
     console.log("Reset New Day:")
     waterDrank = 0;
     store("waterDrank", waterDrank);
@@ -294,7 +294,7 @@ function checkProgressArray(date) {
 function createProgressArray() {
     console.log("Create Progress Array")
     if (!retrieve("dailyProgressArray")) {
-        checkProgressArray(testDate); //FIX ME : testDate -> todayDate
+        checkProgressArray(todayDate);
     }
 }
 
@@ -307,7 +307,7 @@ if (retrieve("waterDrank")) {
 
 
 checkDate();
-checkProgressArray(testDate);
+checkProgressArray(todayDate);
 generateYearVisual();
 updateDaysCompletedVisual()
 
@@ -317,7 +317,7 @@ setInterval(() => {
     let minutes = todayDate.getMinutes()/60;
     let seconds = todayDate.getSeconds()/60/60;
 
-    localStorage.setItem("lastActive", JSON.stringify(testDate)) //FIX ME : testDate -> todayDate
+    localStorage.setItem("lastActive", JSON.stringify(todayDate))
 
     timeBackground.style.width = `${(hour - 1 + minutes + seconds) * VISUAL_MULTIPLIER}rem`
     timeNob.style.marginLeft = `${(hour - 1 + minutes + seconds) * VISUAL_MULTIPLIER}rem`
