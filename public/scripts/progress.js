@@ -120,10 +120,10 @@ function updateDaysCompletedVisual() {
 }
 
 
-function generateYearVisual() {
+function generateYearVisual(date) {
     yearProgressVisual.innerHTML = "";
 
-    let startYear = new Date(`1-1-${new Date().getUTCFullYear()}`)
+    let startYear = new Date(`1-1-${date.getUTCFullYear()}`)
 
     let daysInYear = getDaysInYear(startYear);
     
@@ -194,6 +194,7 @@ waterControls.querySelectorAll("button").forEach(button => {
         
         waterDrank += parseFloat(button.value);
         waterDrank = waterDrank < 0 ? 0 : waterDrank;
+        waterDrank = waterDrank > 50 ? waterDrank-1 : waterDrank;
 
         store("waterDrank", waterDrank);
 
@@ -202,6 +203,47 @@ waterControls.querySelectorAll("button").forEach(button => {
         saveTodayData(todayDate)
     })
 })
+
+const yearVisualYear = document.querySelector("#year-progress-changer p");
+const yearVisualArrows = document.querySelectorAll("#year-progress-changer i")
+
+function updateYearArrows(date) {
+    
+    let currentIndex = Object.keys(dailyProgressArray).indexOf("" + date.getUTCFullYear());
+
+    console.log("CURRENT INDEX: " + currentIndex)
+    if (Object.keys(dailyProgressArray)[currentIndex + 1] == null) {
+        yearVisualArrows[1].classList.add("disabled")
+    } else {
+        yearVisualArrows[1].classList.remove("disabled")
+    }
+    if (Object.keys(dailyProgressArray)[currentIndex - 1] == null) {
+        yearVisualArrows[0].classList.add("disabled")
+    } else {
+        yearVisualArrows[0].classList.remove("disabled")
+    }
+
+}
+
+function changeYear(direction, element) {
+    let currentIndex = Object.keys(dailyProgressArray).indexOf("" + todayDate.getUTCFullYear())
+    console.log(Object.keys(dailyProgressArray))
+    console.log(todayDate.getUTCFullYear())
+    console.log(currentIndex)
+    let newYear;
+    console.log(newYear)
+    
+    let newDate = new Date("1-1-" + newYear)
+    
+    if (Object.keys(dailyProgressArray)[currentIndex + direction]) {
+        newYear = Object.keys(dailyProgressArray)[currentIndex + direction]
+
+        updateYearArrows(newDate)
+        generateYearVisual(newDate)
+        updateDaysCompletedVisual()
+    }
+
+}
 
 
 function updateYearVisual(date) {
@@ -240,7 +282,14 @@ function checkDate() {
         if (lastActive != currentActive) {
             resetNewDay();
         }
+
     }
+    waterDrank = dailyProgressArray[todayDate.getUTCFullYear()][todayDate.getUTCMonth()][todayDate.getUTCDate()].drank
+    totalWaterNum.innerHtml = waterDrank
+    store("waterDrank", waterDrank);
+    changePieAngle()
+    visualizeSchedule()
+
 }
 
 function resetNewDay() {
@@ -306,10 +355,13 @@ if (retrieve("waterDrank")) {
 }
 
 
+
+
 checkDate();
 checkProgressArray(todayDate);
-generateYearVisual();
+generateYearVisual(todayDate);
 updateDaysCompletedVisual()
+updateYearArrows(todayDate)
 
 setInterval(() => {
     let todayDate = new Date();
@@ -323,3 +375,5 @@ setInterval(() => {
     timeNob.style.marginLeft = `${(hour - 1 + minutes + seconds) * VISUAL_MULTIPLIER}rem`
 
 }, 1000)
+
+

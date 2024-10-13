@@ -12,7 +12,7 @@
     <section>
         <h2>Your Progress</h2>
         <!--<input type="date" id="date-test">-->
-        <section class="group gradient-bg">
+        <section class="group">
             <div class="pie-chart" id="total-water-pie">
                 <h2 id="total-water-num">0</h2>
                 <p>Cups</p>
@@ -34,6 +34,11 @@
             </div>
         </section>
         <section class="group">
+            <div id="year-progress-changer">
+                <i class="fa-solid fa-arrow-left" onclick="changeYear(-1, this)"></i>
+                <p>2024</p>
+                <i class="fa-solid fa-arrow-right" onclick="changeYear(1, this)"></i>
+            </div>
             <div id="year-progress-visual">
 
             </div>

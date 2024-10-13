@@ -28,10 +28,11 @@ nav {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
     padding: 1rem;
     z-index: 100;
+
 }
+
 
 nav #nav-btns {
     display: flex;
@@ -44,19 +45,38 @@ nav .btn {
     color: white;
 }
 
+nav .btn:hover {
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+nav #logo, nav #account {
+    flex: 1;
+}
+
 nav #logo{
     width: 2.6rem;
     height: 2.6rem;
     display: grid;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
-    
-
 }
 
 nav #logo i{
     font-size: 2rem;
     color: white;
+}
+
+#logo a {
+    text-decoration: none;
+}
+
+#logo span {
+    font-size: 2em;
+    color: white;
+    font-family: var(--font-primary);
+    font-weight: 800;
+    margin-left: 1rem;
 }
 
 body>section {
@@ -103,10 +123,15 @@ h3 {
     align-items: center;
 }
 
+#goal-form {
+    gap: 3rem;
+    padding-bottom: 5rem;
+}
+
 .block-group {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
     gap: 2rem;
     width: 100%;
 
@@ -125,12 +150,12 @@ h3 {
 
 fieldset {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
     width: 100%;
     border: none;
-    display: flex;
-    flex-direction: row;
+    
 }
 
 .time-goals > label {
@@ -138,13 +163,30 @@ fieldset {
     flex-direction: column;
 }
 
+.time-goals > label > * {
+    height: 4rem;
+    width: 12rem;
+}
+
+.time-goals > label > div:has(#stop-hours-input) {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1.5px solid #5f4cb5;
+    width: 12rem;
+}
+
 .goal-amounts > label {
-    border: 1.5px solid white;
+    background-color: var(--deactive);
     display: flex;
     align-items: center;
-    padding: 1rem;
-    border-radius: 3rem;
+    height: 4rem;
+    width: 12rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 
 .goal-amounts input[type="radio"] {
     display: none;
@@ -152,12 +194,19 @@ fieldset {
 
 .goal-amounts label:has(input[type="radio"]:checked) {
     background-color: var(--primary);
-    border: none;
+    color: #000;
+}
+
+.goal-amounts label:has(input[type="radio"]:checked) input {
     color: #000;
 }
 
 label {
-    color: rgb(176, 176, 176);
+    color: rgb(236, 236, 236);
+    position: relative;
+    font-weight: 600;
+    transition: .1s ease;
+    overflow: hidden;
 }
 
 input {
@@ -166,36 +215,82 @@ input {
     border: none;
 }
 
-.time-goals input[type="time"], .time-goals input[type="number"]{
+input[type="number"] { 
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0; 
+    flex-grow: 1;
+    height: 100%;
+    border: solid var(--background);
+    border-width: 0 0.2rem;
+    border-radius: 1rem;
+    box-sizing:unset;
+    text-align: center;
+    outline: none;
+}
+
+.goal-amounts label:has(input[type="number"])::after {
+    content: "Cups";
+    position: absolute;
+    font-size: .8em;
+    font-weight: 400;
+    bottom: 0;
+}
+
+.time-goals label:has(input[type="number"])::after {
+    content: "Hours Before";
+    position: absolute;
+    font-size: .8em;
+    font-weight: 400;
+    bottom: 0;
+    transform: translateX(50%);
+    right: 50%;
+}
+
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+}
+
+.num {
     padding: 1rem;
-    border: 1px solid white;
-    border-radius: 3rem;
+    height: 100%;
+    font-size: 1.5em;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    transition: .3s ease;
 }
 
-#wake-input {
-    border: 1.5px solid #e5f840;
+.num:hover {
+    background-color: rgba(255, 255, 255, 0.123);
 }
 
-#sleep-input {
-    border: 1.5px solid rgb(54, 87, 255);
+.time-goals input[type="time"], .time-goals input[type="number"], .goal-amounts input[type="number"]{
+    padding: 0.5rem;
+    font-size: 1.2em;
+    font-weight: 600;
 }
 
-#stop-hours-input {
-    border: 1.5px solid #5f4cb5;
-    width: 12rem;
+
+label:has(#wake-input) {
+    border-bottom: 1.5px solid #e5f840;
 }
+
+label:has(#sleep-input) {
+    border-bottom: 1.5px solid rgb(54, 87, 255);
+}
+
 
 label:has(#stop-hours-input) {
     position: relative;
-}
-
-label:has(#stop-hours-input)::after {
-    content: "hours before bed";
-    position: absolute;
-    bottom: 1rem;
-    right: 3rem;
-    font-size: .8em;
-    
 }
 
 legend {
@@ -349,6 +444,10 @@ legend {
     background: conic-gradient(rgb(11, 170, 228) 0%, var(--primary) calc(var(--average-border-completion) / 2), rgb(11, 170, 228) calc(var(--average-border-completion)), var(--deactive) var(--average-border-completion));
 }
 
+#total-water-num {
+    font-size: 4em;
+}
+
 
 /*#total-water-pie::after {
     content: " ";
@@ -377,10 +476,31 @@ legend {
     box-sizing: border-box;
     display: inline-block;
     text-decoration: none;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.btn:hover {
+    background-color: rgb(121, 77, 192);
 }
 
 
 /* YEAR PROGRESS VISUAL */
+
+#year-progress-changer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#year-progress-changer i {
+    font-family: .5em;
+}
+
+.disabled {
+    color: var(--deactive);
+}
 
 #year-progress-visual {
     display: grid;
@@ -448,8 +568,8 @@ legend {
 
 /* DAYS COMPLETED VISUAL */
 
-.days-completed-visual h1 {
-    font-size: 5rem;
+.days-completed-visual h2 {
+    font-size: 4rem;
 }
 
 h1 span{
@@ -473,12 +593,16 @@ p:has(> span) {
 }
 
 .header-content > div {
-    padding: 6rem 1rem;
+    padding: 6rem 2rem;
     width: min(100%, 900px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
+}
+
+.header-content > div > div {
+    margin-top: 2rem;
 }
 
 .background-container {
@@ -488,7 +612,186 @@ p:has(> span) {
     background-image: url(../images/home-bg-2.jpg);
     background-size: cover;
     filter: blur(5px) brightness(.6) contrast(1.1);
+}
 
+
+div:has(> .gradient-bg) {
+    z-index:1;
+}
+
+.gradient-bg {
+    border: none;
+    color: white;
+    border-radius: 50px;
+    position: relative;
+    inline-size: max-content;
+    background: rgb(0, 0, 0);
+}
+
+.gradient-bg:hover {
+    background-color: var(--secondary);
+    color: black;
+}
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.gradient-bg::after, .gradient-bg::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: conic-gradient(from var(--angle), #ffffff00 155deg,var(--secondary) 284deg,#ffffff00 317deg);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 3px;
+    border-radius: calc(50px + 3px);
+    animation: 3s gradientSpin linear infinite;
+}
+
+.gradient-bg::before {
+    filter: blur(1rem);
+    opacity: .5;
+}
+
+@keyframes gradientSpin {
+    from{
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+
+.video-image-bg {
+    background-image: url(../images/home-bg.jpg);
+    height: 40rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 0 15px 0px black;
+}
+
+.video-image-bg:has(.tracker-demo) {
+    background-image: url(../images/home-bg-3.jpg);
+}
+
+.display-video {
+    width: 90%;
+    height: 90%;
+    border-radius: 1rem;
+    box-shadow: 0px 5px 10px 2px black;
+    overflow: hidden;
+    transform: translate(-1rem, -2rem);
+}
+
+.display-video video {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tracker-demo {
+    margin-left: auto;
+    transform: translate(1rem, -2rem);
+    
+}
+
+
+.home-cont {
+    width: 100%;
+    padding: 0 2rem;
+}
+
+.home-cont > div {
+    width: 100%;
+}
+
+.home-cont p {
+    color: rgb(191, 195, 203);
+}
+
+.home-cont > div:has(h1) {
+    margin-top: 2rem;
+}
+
+.home-cont > div h1, .home-cont > div h3{
+    text-align: left;
+}
+
+.home-cont > div h3 {
+    color: var(--secondary);
+}
+
+.home-cont h2 {
+    margin-top: 2rem;
+}
+
+.group > .image-cont {
+    width: 80%;
+    border-radius: 1rem;
+    position: relative;
+    margin-top: 2rem;
+}
+
+.image-cont img {
+    border-radius: 1rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-cont > h3 {
+    position: absolute;
+}
+
+.goal-display h3:nth-child(1) {
+    bottom: 14%;
+    left: -2%;
+    rotate: 10deg;
+}
+
+.goal-display h3:nth-child(2) {
+    top: 8%;
+    left: 60%;
+    transform: translate(-50%);
+    rotate: -6deg;
+}
+
+.goal-display h3:nth-child(3) {
+    bottom: 10%;
+    right: -3%;
+    rotate: 3deg;
 
 }
 
+.tracker-display h3 {
+    font-size: 2em;
+}
+
+.tracker-display h3:nth-child(1) {
+    bottom: 15%;
+    left: 8%;
+    rotate: 10deg;
+}
+
+.tracker-display h3:nth-child(2) {
+    bottom: 2%;
+    left: 55%;
+    transform: translate(-50%);
+    rotate: -6deg;
+}
+
+.tracker-display h3:nth-child(3) {
+    bottom: 15%;
+    right: 8%;
+    rotate: -10deg;
+
+}

@@ -11,14 +11,14 @@
     <section>
         <h2>Water Tracker and Reminder</h2>
 
-        <form id="goal-form" class="group gradient-bg">
+        <form id="goal-form" class="group">
             <h3>Your Goal</h3>
             
             <fieldset class="goal-amounts">
                 <legend>How much water do you want to drink a day?</legend>
                 <label for="male-goal"><input checked name="water-goal" type="radio" id="male-goal" class="goal-check" value="15.5">15.5 Cups / 3.7 Liters</label>
                 <label for="female-goal"><input name="water-goal" type="radio" id="female-goal" class="goal-check" value="11.5">11.5 Cups / 2.7 liters</label>
-                <label for="custom-goal"><input name="water-goal" type="radio" id="custom-goal" class="goal-check" value="0"><input type="number" id="custom-goal-input" min="1" max="100" value="14"> Cups</label>
+                <label for="custom-goal"><input name="water-goal" type="radio" id="custom-goal" class="goal-check" value="0"><div class="num" onclick="change(this, -1)">-</div><input type="number" id="custom-goal-input" min="1" max="30" value="14"><div class="num" onclick="change(this, 1)">+</div></label>
             </fieldset>
             
 
@@ -29,7 +29,11 @@
                 </label>
 
                 <label>End of Drinking Window
-                <input type="number" id="stop-hours-input" value="2" min="0" max="5">
+                    <div>
+                        <div class="num" onclick="change(this, -1)">-</div>
+                        <input type="number" id="stop-hours-input" value="2" min="0" max="5">
+                        <div class="num" onclick="change(this, 1)">+</div>
+                    </div>
                 </label>
 
                 <label>Sleep Time
@@ -40,7 +44,7 @@
             <label for="">Set your drink increments
             <input type="number" id="drink-increments" value="1" min="1">
             </label>-->
-            <button type="submit">Set Goal</button>
+            
         </form>
         <section class="group">
     

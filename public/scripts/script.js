@@ -92,6 +92,15 @@ goalForm.addEventListener("submit", (e) => {
 })
 
 
+function change(btn, value) {
+    let numInput = btn.parentElement.querySelector("input[type='number']");
+    
+    if (parseInt(numInput.value) + value >= numInput.min && parseInt(numInput.value) + value <= numInput.max) {
+        numInput.value = parseInt(numInput.value) + parseInt(value);
+    }
+    console.log(numInput.value)
+    updateSystem();
+}
 
 
 //clearStorage()
