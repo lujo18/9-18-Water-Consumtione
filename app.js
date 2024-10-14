@@ -20,13 +20,12 @@ app.use(helmet())
 app.use(helmet({
     contentSecurityPolicy : {
         directives: {
-            defaultSrc:["'self'"],
+            defaultSrc:["'none'"],
             scriptSrc:["'self'", "https://strict-dynamic", (req, res) => `'nonce-${res.locals.nonce}'`, "/coreFunctions.js", "/goalDisplay.js", "/progress.js", "script.js", "https://kit.fontawesome.com", "https://vercel.live/_next-live/feedback/feedback.js"],
             imgSrc:["'self'"],
             connectSrc:["'self'", "https://ka-f.fontawesome.com"],
             objectSrc:["'self'"],
             scriptSrcAttr:["'self'"],
-            scriptSrcElem:["'self'"]
         },
         cookies: {
             secure: true
