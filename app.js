@@ -20,7 +20,7 @@ app.use(helmet({
     contentSecurityPolicy : {
         directives: {
             defaultSrc:["'self'"],
-            scriptSrc:["'self'", "https://strict-dynamic", (req, res) => `'nonce-${res.locals.nonce}'`],
+            scriptSrc:["'self'", "https://strict-dynamic", (req, res) => `'nonce-${res.locals.nonce}'`, "coreFunctions.js", "goalDisplay.js", "progress.js", "script.js", "https://kit.fontawesome.com", "unsafe-inline"],
             imgSrc:["'self'"],
             connectSrc:["'self'", "https://ka-f.fontawesome.com"],
             scriptSrcAttr:["'self'", "'unsafe-inline'"]
