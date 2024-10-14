@@ -9,6 +9,7 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 app.use("/static", express.static(path.join(__dirname, 'public')));
+app.use(express.favicon(__dirname + '/public/images/favicon.svg')); 
 
 app.use((req, res, next) => {
     res.locals.nonce = crypto.randomBytes(32).toString("hex");
@@ -24,7 +25,8 @@ app.use(helmet({
             imgSrc:["'self'"],
             connectSrc:["'self'", "https://ka-f.fontawesome.com"],
             objectSrc:["'self'"],
-            scriptSrcAttr:["'self'"]
+            scriptSrcAttr:["'self'"],
+            scriptSrcElem:["'self'"]
         },
         cookies: {
             secure: true
