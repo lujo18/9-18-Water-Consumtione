@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const port = 7000;
+const port = 6000;
 const helmet = require("helmet");
 const crypto = require("crypto")
 
@@ -20,9 +20,10 @@ app.use(helmet({
     contentSecurityPolicy : {
         directives: {
             defaultSrc:["'self'"],
-            scriptSrc:["'self'", "https://strict-dynamic", (req, res) => `'nonce-${res.locals.nonce}'`, "/coreFunctions.js", "/goalDisplay.js", "/progress.js", "script.js", "https://kit.fontawesome.com"],
+            scriptSrc:["'self'", "https://strict-dynamic", (req, res) => `'nonce-${res.locals.nonce}'`, "/coreFunctions.js", "/goalDisplay.js", "/progress.js", "script.js", "https://kit.fontawesome.com", "https://vercel.live/_next-live/feedback/feedback.js"],
             imgSrc:["'self'"],
             connectSrc:["'self'", "https://ka-f.fontawesome.com"],
+            objectSrc:["'self'"],
             scriptSrcAttr:["'self'"]
         },
         cookies: {
