@@ -18,7 +18,8 @@ app.use((req, res, next) => {
 
 app.use(helmet())
 app.use(helmet({
-    contentSecurityPolicy : {
+    contentSecurityPolicy:false,
+    contentSecurityPolicyReportOnly : {
         directives: {
             defaultSrc:["'none'"],
             scriptSrc:["'self'", "https://strict-dynamic",(req, res) => `'nonce-${res.locals.nonce}'`, "/coreFunctions.js", "/goalDisplay.js", "/progress.js", "script.js", "https://kit.fontawesome.com", "https://vercel.live"],
@@ -30,12 +31,18 @@ app.use(helmet({
             connectSrc:["'self'", "https://ka-f.fontawesome.com"],
             objectSrc:["'self'"],
             scriptSrcAttr:["'self'"],
+            reportUri:"/csp-violation-report-endpoint"
         },
         cookies: {
             secure: true
         }
     }
 }))
+
+app.post("/csp-violation-report-endpoint", express.json(), (req, res) => {
+    console.log("CSP Violation: " + req.body);
+    res.status(204).end()
+})
 
 app.get("/", (req, res) => {
     res.render("home", {});
