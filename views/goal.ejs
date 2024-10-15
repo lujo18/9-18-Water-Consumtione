@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="static/styles/styles.css">
+    <icon src="static/images/favicon.svg"></icon>
 </head>
 <body>
     <%- include("navbar") %>
@@ -54,8 +55,8 @@
         </section>
     </section>
 
-    <script src="static/scripts/coreFunctions.js" nonce="<%= nonce %>"></script>
-    <script src="static/scripts/script.js" nonce="<%= nonce %>></script>
+    <script src="static/scripts/coreFunctions.js" nonce={{res.local.nonce}}></script>
+    <script src="static/scripts/script.js" nonce={{res.local.nonce}}></script>
     
 </body>
 </html>

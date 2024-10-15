@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const port = 6000;
+const port = 7000;
 const helmet = require("helmet");
 const crypto = require("crypto")
 
@@ -21,7 +21,7 @@ app.use(helmet({
     contentSecurityPolicy : {
         directives: {
             defaultSrc:["'none'"],
-            scriptSrc:["'self'", "https://strict-dynamic", (req, res) => `'nonce-${res.locals.nonce}'`, "/coreFunctions.js", "/goalDisplay.js", "/progress.js", "script.js", "https://kit.fontawesome.com", "https://vercel.live"],
+            scriptSrc:["'self'", "https://strict-dynamic",(req, res) => `'nonce-${res.locals.nonce}'`, "/coreFunctions.js", "/goalDisplay.js", "/progress.js", "script.js", "https://kit.fontawesome.com", "https://vercel.live"],
             imgSrc: [
                 "'self'",              // Allow images from your own domain
                 "https://water-plus-drab.vercel.app",  // Allow images from your Vercel app
