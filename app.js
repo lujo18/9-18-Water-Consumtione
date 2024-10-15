@@ -48,12 +48,12 @@ app.use(helmet({
         imgSrc: ["*"],
         connectSrc: ["*"],
         reportUri: "/csp-violation-report-endpoint",
+        reportOnly: true
       },
       cookies : {
         secure: true,
         httpsOnly: true,
-      },
-      reportOnly: true
+      }
     }
 }));
 
