@@ -16,10 +16,9 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use(helmet())
+
 app.use(helmet({
-    contentSecurityPolicy:false,
-    contentSecurityPolicyReportOnly : {
+    contentSecurityPolicy: {
         directives: {
             defaultSrc:["'none'"],
             scriptSrc:["'self'", "https://strict-dynamic",(req, res) => `'nonce-${res.locals.nonce}'`, "/coreFunctions.js", "/goalDisplay.js", "/progress.js", "script.js", "https://kit.fontawesome.com", "https://vercel.live"],
@@ -35,7 +34,8 @@ app.use(helmet({
         },
         cookies: {
             secure: true
-        }
+        },
+        reportOnly: true,
     }
 }))
 
