@@ -284,7 +284,7 @@ function checkDate() {
         }
         return;
     }
-    checkProgressArray()
+    checkProgressArray(todayDate)
     waterDrank = dailyProgressArray[todayDate.getUTCFullYear()][todayDate.getUTCMonth()][todayDate.getUTCDate()].drank
     totalWaterNum.innerHtml = waterDrank
     store("waterDrank", waterDrank);
