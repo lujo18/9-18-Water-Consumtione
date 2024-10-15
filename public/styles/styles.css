@@ -78,6 +78,14 @@ nav #logo i{
     font-family: var(--font-primary);
     font-weight: 800;
     margin-left: 1rem;
+    display: inline-block;
+}
+
+
+@media only screen and (max-width: 768px) {
+    #logo span {
+        display: none;
+    }
 }
 
 body>section {
@@ -91,18 +99,18 @@ body>section {
 
 h1 {
     font-family: var(--font-primary);
-    font-size: 5em;
+    font-size: min(5em, 15vw);
     font-weight: 800;
 }
 
 h2 {
     font-family: var(--font-primary);
-    font-size: 2em;
+    font-size: min(2em, 8vw);
     font-weight: 600;
 }
 
 h3 {
-    font-size: 1.5em;
+    font-size: min(1.5em, 5vw);
 }
 
 .gradient-bg {
@@ -711,6 +719,12 @@ div:has(> .gradient-bg) {
     padding: 0 2rem;
 }
 
+@media only screen and (max-width: 768px) {
+    .home-cont {
+        padding: 0 0;
+    }
+}
+
 .home-cont > div {
     width: 100%;
 }
@@ -735,8 +749,14 @@ div:has(> .gradient-bg) {
     margin-top: 2rem;
 }
 
+@media only screen and (max-width: 768px) {
+    .home-cont h1, .home-cont h3 {
+        margin-left: 1rem;
+    }
+}
+
 .group > .image-cont {
-    width: 80%;
+    width: min(50rem, 95vw);
     border-radius: 1rem;
     position: relative;
     margin-top: 2rem;
@@ -764,18 +784,22 @@ div:has(> .gradient-bg) {
     left: 60%;
     transform: translate(-50%);
     rotate: -6deg;
+    width: min(400px, 50vw)
 }
 
 .goal-display h3:nth-child(3) {
     bottom: 10%;
-    right: -3%;
+    right: 0%;
     rotate: 3deg;
 
 }
 
-.tracker-display h3 {
-    font-size: 2em;
+.goal-display h3, .tracker-display h3 {
+    font-size: min(1.5em, 3vw);
 }
+
+
+
 
 .tracker-display h3:nth-child(1) {
     bottom: 15%;
@@ -796,3 +820,4 @@ div:has(> .gradient-bg) {
     rotate: -10deg;
 
 }
+
