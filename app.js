@@ -12,30 +12,46 @@ app.use("/static", express.static(path.join(__dirname, 'public')));
 
 
 app.use((req, res, next) => {
-    res.locals.nonce = crypto.randomBytes(32).toString("hex");
+    res.locals.nonce = crypto.randomBytes(16).toString("base64");
     next();
 })
 
 
-app.use(helmet({
+/*app.use(helmet({
     contentSecurityPolicy: {
         useDefaults:false,
         directives: {
             defaultSrc:["'self'"],
-            scriptSrc:["'self'", (req, res) => `'nonce-${res.locals.nonce}'`, "https://vercel.live", "coreFunctions.js", "goalDisplay.js", "progress.js", "script.js", "https://kit.fontawesome.com"],
+            scriptSrc:["'self'",`'nonce-${res.locals.nonce}'`, "https://vercel.live", "coreFunctions.js", "goalDisplay.js", "progress.js", "script.js", "https://kit.fontawesome.com"],
             imgSrc: [
                 "'self'", 
                 "https://vercel.live",             // Allow images from your own domain
                 "data:"                // Allow data URIs (useful for inline base64-encoded images)
               ],
+            styleSrc: ["'self'", "https://kit.fontawesome.com"],
             connectSrc:["'self'", "https://ka-f.fontawesome.com", "https://vercel.live"],
             objectSrc:["'self'"],
             scriptSrcAttr:["'self'", "https://vercel.live"],
-            reportUri:"/csp-violation-report-endpoint"
+            reportUri:"/csp-violation-report-endpoint",
+            upgradeInsecureRequests: [],
         },
-        reportOnly: true,
+        reportOnly: true
     }
-}))
+}))*/
+
+app.use(helmet({
+    contentSecurityPolicy: {
+      useDefaults: false,
+      directives: {
+        defaultSrc: ["*"], // Allow everything temporarily
+        scriptSrc: ["*"],
+        imgSrc: ["*"],
+        connectSrc: ["*"],
+        reportUri: "/csp-violation-report-endpoint",
+        reportOnly: true
+      }
+    }
+}));
 
 app.post("/csp-violation-report-endpoint", express.json(), (req, res) => {
     console.log("CSP Violation: " + req.body);
