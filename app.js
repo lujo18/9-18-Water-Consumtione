@@ -22,10 +22,9 @@ app.use(helmet({
         useDefaults:false,
         directives: {
             defaultSrc:["'self'"],
-            scriptSrc:["'self'", "'strict-dynamic'", (req, res) => `'nonce-${res.locals.nonce}'`, "coreFunctions.js", "goalDisplay.js", "progress.js", "script.js", "https://kit.fontawesome.com", "https://vercel.live"],
+            scriptSrc:["'self'", (req, res) => `'nonce-${res.locals.nonce}'`, "utils.js", "index.js", "coreFunctions.js", "goalDisplay.js", "progress.js", "script.js", "https://kit.fontawesome.com", "https://vercel.live"],
             imgSrc: [
                 "'self'",              // Allow images from your own domain
-                "https://water-plus-drab.vercel.app",  // Allow images from your Vercel app
                 "data:"                // Allow data URIs (useful for inline base64-encoded images)
               ],
             connectSrc:["'self'", "https://ka-f.fontawesome.com"],
