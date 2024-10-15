@@ -282,8 +282,9 @@ function checkDate() {
         if (lastActive != currentActive) {
             resetNewDay();
         }
-
+        return;
     }
+    checkProgressArray()
     waterDrank = dailyProgressArray[todayDate.getUTCFullYear()][todayDate.getUTCMonth()][todayDate.getUTCDate()].drank
     totalWaterNum.innerHtml = waterDrank
     store("waterDrank", waterDrank);
