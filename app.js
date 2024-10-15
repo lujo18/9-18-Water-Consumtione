@@ -22,14 +22,15 @@ app.use(helmet({
         useDefaults:false,
         directives: {
             defaultSrc:["'self'"],
-            scriptSrc:["'self'", (req, res) => `'nonce-${res.locals.nonce}'`, "utils.js", "index.js", "coreFunctions.js", "goalDisplay.js", "progress.js", "script.js", "https://kit.fontawesome.com", "https://vercel.live"],
+            scriptSrc:["'self'", (req, res) => `'nonce-${res.locals.nonce}'`, "https://vercel.live", "coreFunctions.js", "goalDisplay.js", "progress.js", "script.js", "https://kit.fontawesome.com"],
             imgSrc: [
-                "'self'",              // Allow images from your own domain
+                "'self'", 
+                "https://vercel.live",             // Allow images from your own domain
                 "data:"                // Allow data URIs (useful for inline base64-encoded images)
               ],
-            connectSrc:["'self'", "https://ka-f.fontawesome.com"],
+            connectSrc:["'self'", "https://ka-f.fontawesome.com", "https://vercel.live"],
             objectSrc:["'self'"],
-            scriptSrcAttr:["'self'"],
+            scriptSrcAttr:["'self'", "https://vercel.live"],
             reportUri:"/csp-violation-report-endpoint"
         },
         reportOnly: true,
