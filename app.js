@@ -39,7 +39,7 @@ app.use((req, res, next) => {
     }
 }))*/
 
-app.use(helmet({
+/*app.use(helmet({
     contentSecurityPolicy: {
       useDefaults: false,
       directives: {
@@ -55,7 +55,13 @@ app.use(helmet({
         httpsOnly: true,
       }
     }
-}));
+}));*/
+
+app.use(
+    helmet({
+      contentSecurityPolicy: false,
+    })
+);
 
 app.post("/csp-violation-report-endpoint", express.json(), (req, res) => {
     console.log("CSP Violation: " + req.body);
