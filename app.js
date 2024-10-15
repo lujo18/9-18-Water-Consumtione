@@ -21,8 +21,12 @@ app.use(helmet({
     contentSecurityPolicy : {
         directives: {
             defaultSrc:["'none'"],
-            scriptSrc:["'self'", "https://strict-dynamic", (req, res) => `'nonce-${res.locals.nonce}'`, "/coreFunctions.js", "/goalDisplay.js", "/progress.js", "script.js", "https://kit.fontawesome.com", "https://vercel.live/_next-live/feedback/feedback.js"],
-            imgSrc:["'self'"],
+            scriptSrc:["'self'", "https://strict-dynamic", (req, res) => `'nonce-${res.locals.nonce}'`, "/coreFunctions.js", "/goalDisplay.js", "/progress.js", "script.js", "https://kit.fontawesome.com", "https://vercel.live"],
+            imgSrc: [
+                "'self'",              // Allow images from your own domain
+                "https://water-plus-drab.vercel.app",  // Allow images from your Vercel app
+                "data:"                // Allow data URIs (useful for inline base64-encoded images)
+              ],
             connectSrc:["'self'", "https://ka-f.fontawesome.com"],
             objectSrc:["'self'"],
             scriptSrcAttr:["'self'"],
