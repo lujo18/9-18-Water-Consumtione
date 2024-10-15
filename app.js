@@ -19,9 +19,10 @@ app.use((req, res, next) => {
 
 app.use(helmet({
     contentSecurityPolicy: {
+        useDefaults:false,
         directives: {
-            defaultSrc:["'none'"],
-            scriptSrc:["'self'", "https://strict-dynamic",(req, res) => `'nonce-${res.locals.nonce}'`, "/coreFunctions.js", "/goalDisplay.js", "/progress.js", "script.js", "https://kit.fontawesome.com", "https://vercel.live"],
+            defaultSrc:["'self'"],
+            scriptSrc:["'self'", "'strict-dynamic'", (req, res) => `'nonce-${res.locals.nonce}'`, "coreFunctions.js", "goalDisplay.js", "progress.js", "script.js", "https://kit.fontawesome.com", "https://vercel.live"],
             imgSrc: [
                 "'self'",              // Allow images from your own domain
                 "https://water-plus-drab.vercel.app",  // Allow images from your Vercel app
@@ -31,9 +32,6 @@ app.use(helmet({
             objectSrc:["'self'"],
             scriptSrcAttr:["'self'"],
             reportUri:"/csp-violation-report-endpoint"
-        },
-        cookies: {
-            secure: true
         },
         reportOnly: true,
     }
