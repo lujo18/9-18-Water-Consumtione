@@ -21,6 +21,7 @@
 
 body {
     background-color: rgb(11, 11, 11);
+    width: 100vw;
     color: rgb(229, 229, 229);
     padding-bottom: 2rem;
 }
@@ -93,7 +94,8 @@ body>section {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    width: max(100vh, 800px);
+    width: min(100vw, 800px);
+    background-color: red;
     margin: 0 auto;
 }
 
@@ -155,12 +157,10 @@ h3 {
 
 
 
-
-
 fieldset {
-    display: flex;
-    flex-direction: row;
+    display: grid;
     justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(200px, auto));
     gap: 2rem;
     width: 100%;
     border: none;
@@ -184,6 +184,7 @@ fieldset {
     width: 12rem;
 }
 
+
 .goal-amounts > label {
     background-color: var(--deactive);
     display: flex;
@@ -194,6 +195,16 @@ fieldset {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media only screen and (max-device-width: 768px) {
+    .goal-amounts > label {
+        width: 90vw;
+    }
+
+    .time-goals > label > * {
+        width: 90vw;
+    }
 }
 
 
@@ -284,7 +295,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .time-goals input[type="time"], .time-goals input[type="number"], .goal-amounts input[type="number"]{
     padding: 0.5rem;
-    font-size: 1.2em;
+    font-size: min(10vw, 1.2em);
     font-weight: 600;
 }
 
