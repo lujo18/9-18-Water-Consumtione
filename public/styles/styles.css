@@ -318,8 +318,15 @@ legend {
     padding: 1rem;
 }
 
+div:has(> #schedule-visual) {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: none;
+
+}
 
 #schedule-visual {
+    
     width: calc(24rem*2);
     height: 4rem;
     position: relative;
@@ -401,7 +408,7 @@ legend {
 }
 
 .goal-progress-cont {
-    width: max-content;
+    width: 100%;
     height: max-content;
     display: flex;
     flex-direction: column;
