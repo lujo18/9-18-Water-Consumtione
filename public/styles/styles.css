@@ -95,7 +95,7 @@ body>section {
     align-items: center;
     gap: 2rem;
     width: min(100vw, 800px);
-    background-color: red;
+   
     margin: 0 auto;
 }
 
@@ -320,6 +320,7 @@ legend {
 
 div:has(> #schedule-visual) {
     width: 100%;
+    height: max-content;
     overflow-x: auto;
     overflow-y: none;
 
@@ -331,6 +332,14 @@ div:has(> #schedule-visual) {
     height: 4rem;
     position: relative;
 }
+
+@media only screen and (max-device-width: 768px) {
+    div:has(> #schedule-visual) { 
+        scale: 1.5;
+    }
+}
+
+
 
 #schedule-visual > div {
     position: absolute;
