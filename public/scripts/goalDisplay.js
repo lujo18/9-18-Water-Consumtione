@@ -1,4 +1,5 @@
-const VISUAL_MULTIPLIER = 2;
+const root = document.querySelector(":root")
+const VISUAL_MULTIPLIER = getComputedStyle(root).getPropertyValue('--visual-scale');
 const scheduleVisual = document.querySelector("#schedule-visual")
 const isMilitaryTime = false;
 
@@ -43,9 +44,9 @@ async function visualizeSchedule() {
         
         let section = document.createElement("div");
         section.classList.add("schedule-section");
-        section.style.width = `${VISUAL_MULTIPLIER - .5}rem`
-        section.style.marginLeft = `${(VISUAL_MULTIPLIER - 1.5)/2}rem`
-        section.style.marginRight = `${(VISUAL_MULTIPLIER - 1.5)/2}rem`
+        section.style.width = `${VISUAL_MULTIPLIER - (VISUAL_MULTIPLIER/4)}rem`
+        section.style.marginLeft = `${(VISUAL_MULTIPLIER - (VISUAL_MULTIPLIER * 3 / 4))/2}rem`
+        section.style.marginRight = `${(VISUAL_MULTIPLIER - (VISUAL_MULTIPLIER * 3 / 4))/2}rem`
         section.style.animationDelay = `${i/10}s`
 
         let label = document.createElement("p");
