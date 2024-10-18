@@ -342,16 +342,15 @@ div:has(> #schedule-visual) {
     .scroll-indicator {
         display: inline-block;
         position: absolute;
-        top: 50%;
-        right: 5%;
+        top: 55%;
+        right: -5%;
         z-index: 1;
-        transform: translate(-50%, -50%);
+        transform: translate(-70%, -50%) scaleY(1);
         animation: move-scroller 2s both;
         animation-delay: 0s;
         animation-iteration-count: infinite;
-        font-size: 3.5em;
-        font-weight: 700;
-        font-family: monospace;
+        font-size: 3em;
+
         z-index: 100;
     }
 }
@@ -367,10 +366,10 @@ div:has(> #schedule-visual) {
 
 @keyframes move-scroller {
     50% {
-        transform: translate(-40%, -50%);
+        transform: translate(-40%, -50%) scaleY(0.9);
     }
     100% {
-        transform: translate(-50%, -50%);
+        transform: translate(-70%, -50%) scaleY(1);
     }
 }
 
