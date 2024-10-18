@@ -2,6 +2,12 @@ const root = document.querySelector(":root")
 const VISUAL_MULTIPLIER = getComputedStyle(root).getPropertyValue('--visual-scale');
 const scheduleVisual = document.querySelector("#schedule-visual")
 const isMilitaryTime = false;
+const scrollIndicator = document.querySelector(".scroll-indicator")
+const scheduleContainer = document.querySelector("div:has(#schedule-visual)");
+
+scheduleContainer.addEventListener("scroll", e => {
+    scrollIndicator.style.animation = "scroll-indication 1s forwards"
+})
 
 
 function goalGrid () {

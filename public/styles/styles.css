@@ -148,6 +148,12 @@ h3 {
 
 }
 
+img {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
 .block-group > * {
     display: flex;
     justify-content: center;
@@ -320,13 +326,54 @@ legend {
 
 div:has(> #schedule-visual) {
     width: 100%;
+    position: relative;
     height: max-content;
     overflow-x: auto;
     overflow-y: none;
     scroll-behavior: smooth;
     scroll-snap-type: x proximity;
-
 }
+
+.scroll-indicator {
+    display: none;
+}
+
+@media only screen and (max-device-width: 768px) {
+    .scroll-indicator {
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        right: 5%;
+        z-index: 1;
+        transform: translate(-50%, -50%);
+        animation: move-scroller 2s both;
+        animation-delay: 0s;
+        animation-iteration-count: infinite;
+        font-size: 3.5em;
+        font-weight: 700;
+        font-family: monospace;
+        z-index: 100;
+    }
+}
+
+@keyframes scroll-indication {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes move-scroller {
+    50% {
+        transform: translate(-40%, -50%);
+    }
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+
 
 :root {
     --visual-scale: 2;
