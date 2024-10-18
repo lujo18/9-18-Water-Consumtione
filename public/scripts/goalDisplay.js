@@ -5,6 +5,7 @@ const isMilitaryTime = false;
 const scrollIndicator = document.querySelector(".scroll-indicator")
 const scheduleContainer = document.querySelector("div:has(#schedule-visual)");
 
+
 scheduleContainer.addEventListener("scroll", e => {
     scrollIndicator.style.animation = "scroll-indication 1s forwards"
 })

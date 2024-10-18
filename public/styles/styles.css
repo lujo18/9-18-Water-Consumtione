@@ -334,24 +334,30 @@ div:has(> #schedule-visual) {
     scroll-snap-type: x proximity;
 }
 
+
 .scroll-indicator {
     display: none;
+    opacity: 0;
 }
 
 @media only screen and (max-device-width: 768px) {
+    .group:has(.goal-progress-cont #schedule-visual) {
+        padding-bottom: 0;
+        
+    }
+
     .scroll-indicator {
         display: inline-block;
         position: absolute;
-        top: 55%;
-        right: -5%;
-        z-index: 1;
+        top: 50%;
+        left: 80vw;
         transform: translate(-50%, -50%) scaleY(1);
         -webkit-transform: translate(-50%, -50%) scaleY(1);
         animation: move-scroller 2s both;
         animation-delay: 0s;
         animation-iteration-count: infinite;
         font-size: 3em;
-
+        opacity: 1;
         z-index: 100;
     }
 }
