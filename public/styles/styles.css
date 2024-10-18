@@ -345,7 +345,7 @@ div:has(> #schedule-visual) {
         top: 55%;
         right: -5%;
         z-index: 1;
-        transform: translate(-70%, -50%) scaleY(1);
+        transform: translate(-50%, -50%) scaleY(1);
         animation: move-scroller 2s both;
         animation-delay: 0s;
         animation-iteration-count: infinite;
@@ -366,10 +366,12 @@ div:has(> #schedule-visual) {
 
 @keyframes move-scroller {
     50% {
-        transform: translate(-40%, -50%) scaleY(0.9);
+        transform: translate(-30%, -50%) scaleY(0.9);
+        opacity: 0.8;
     }
     100% {
-        transform: translate(-70%, -50%) scaleY(1);
+        transform: translate(-50%, -50%) scaleY(1);
+        opacity: 1;
     }
 }
 
