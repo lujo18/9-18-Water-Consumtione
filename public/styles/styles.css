@@ -581,19 +581,21 @@ div:has(> #schedule-visual) {
 #water-controls .btn {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 
 
 #water-controls .btn span {
-    font-size: 1.5em;
+    font-size: 2em;
+    color: white;
 }
 
 .btn {
     border: none;
     padding: .8rem 1.2rem;
     border-radius: 3rem;
-    color: white;
+    color: rgb(198, 198, 212);
     background-color: var(--secondary);
     font-weight: bold;
     box-sizing: border-box;
