@@ -41,7 +41,7 @@ async function visualizeSchedule() {
     stopDrinkingTime = retrieve("stopDrinkingTime");
     sleepTime = retrieve("sleepTime");
 
-    console.log(wakeTime)
+    //console.log(wakeTime)
 
     scheduleVisual.querySelector("#time-blocks").innerHTML = ' ';
 
@@ -59,10 +59,10 @@ async function visualizeSchedule() {
         let label = document.createElement("p");
         label.innerText = waterGoals[i];
 
-        console.log("Water drank: ")
-        console.log(retrieve("waterDrank"))
-        console.log("Water goal: ")
-        console.log(waterGoals[i])
+        //console.log("Water drank: ")
+        //console.log(retrieve("waterDrank"))
+        //console.log("Water goal: ")
+        //console.log(waterGoals[i])
         if (retrieve("waterDrank") >= waterGoals[i]) {
             section.classList.add("completed");
         }

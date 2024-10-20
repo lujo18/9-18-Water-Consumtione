@@ -9,7 +9,7 @@ let pieAngle = 0;
 
 //const dateTest = document.querySelector("#date-test")
 /*let testDate = new Date(dateTest.value);
-console.log(testDate)
+//console.log(testDate)
 dateTest.addEventListener("change", () => {
     testDate = new Date(dateTest.value)
     checkDate()
@@ -58,7 +58,7 @@ function changePieAngle () {
 
     let now = new Date(retrieve("lastActive")).getUTCDate()
 
-    console.log(now)
+    //console.log(now)
     
 }
 
@@ -96,7 +96,7 @@ function updateDaysCompletedVisual() {
             }
             
             
-            console.log(dailyProgressArray)
+            //console.log(dailyProgressArray)
         })
     })
 
@@ -211,7 +211,7 @@ function updateYearArrows(date) {
     
     let currentIndex = Object.keys(dailyProgressArray).indexOf("" + date.getUTCFullYear());
 
-    console.log("CURRENT INDEX: " + currentIndex)
+    //console.log("CURRENT INDEX: " + currentIndex)
     if (Object.keys(dailyProgressArray)[currentIndex + 1] == null) {
         yearVisualArrows[1].classList.add("disabled")
     } else {
@@ -227,11 +227,9 @@ function updateYearArrows(date) {
 
 function changeYear(direction, element) {
     let currentIndex = Object.keys(dailyProgressArray).indexOf("" + todayDate.getUTCFullYear())
-    console.log(Object.keys(dailyProgressArray))
-    console.log(todayDate.getUTCFullYear())
-    console.log(currentIndex)
+
     let newYear;
-    console.log(newYear)
+
     
     let newDate = new Date("1-1-" + newYear)
     
@@ -253,32 +251,28 @@ function updateYearVisual(date) {
 
 function saveTodayData(date) {
     checkProgressArray(date)
-    console.log("Save Today Data")
+    ////console.log("Save Today Data")
     if (!retrieve("dailyProgressArray")) {
         createProgressArray(date);
     } else {
         dailyProgressArray = retrieve("dailyProgressArray");
     }
-    console.log("Daily Array:")
-    console.log(dailyProgressArray)
-    console.log(date.getUTCMonth())
-    console.log(date.getUTCDate())
+    
     dailyProgressArray[date.getUTCFullYear()][date.getUTCMonth()][date.getUTCDate()].drank = waterDrank;
     dailyProgressArray[date.getUTCFullYear()][date.getUTCMonth()][date.getUTCDate()].goal = parseFloat(retrieve("dailyGoal"));
     dailyProgressArray[date.getUTCFullYear()][date.getUTCMonth()][date.getUTCDate()].completion = waterDrank / parseFloat(retrieve("dailyGoal"))
     store("dailyProgressArray", dailyProgressArray)
 
-    console.log(retrieve("dailyProgressArray"))
     updateYearVisual(date)
     
 }
 
 function checkDate() {
     if (retrieve("lastActive")) {
-        lastActive = new Date(retrieve("lastActive")).getUTCDate()
-        currentActive = new Date().getUTCDay();
-        console.log("last: " + lastActive);
-        console.log("current: " + currentActive)
+        lastActive = new Date(retrieve("lastActive")).getDate()
+        currentActive = new Date().getDate();
+        ////console.log("last: " + lastActive);
+        ////console.log("current: " + currentActive)
         if (lastActive != currentActive) {
             resetNewDay();
         }
@@ -295,7 +289,7 @@ function checkDate() {
 
 function resetNewDay() {
     checkProgressArray(todayDate)
-    console.log("Reset New Day:")
+    //console.log("Reset New Day:")
     waterDrank = 0;
     store("waterDrank", waterDrank);
 
@@ -312,14 +306,14 @@ function checkProgressArray(date) {
         dailyProgressArray = retrieve("dailyProgressArray")
     }
 
-    console.log("Check Progress Array:")
+    //console.log("Check Progress Array:")
     let year = date.getUTCFullYear();
     let month = date.getUTCMonth();
     let day = date.getUTCDate();
-    console.log("DATE: : :")
-    console.log(date)
-    console.log(date.getUTCMonth())
-    console.log(date.getUTCDate())  // FIX ME : the dates are 1 behind because of arrays
+    //console.log("DATE: : :")
+    //console.log(date)
+    //console.log(date.getUTCMonth())
+    //console.log(date.getUTCDate())  // FIX ME : the dates are 1 behind because of arrays
     // FIX ME : the id system mistakes 12/1 as 1/21
 
 
@@ -342,7 +336,7 @@ function checkProgressArray(date) {
 }
 
 function createProgressArray() {
-    console.log("Create Progress Array")
+    //console.log("Create Progress Array")
     if (!retrieve("dailyProgressArray")) {
         checkProgressArray(todayDate);
     }

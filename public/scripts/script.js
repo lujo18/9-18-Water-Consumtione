@@ -46,9 +46,9 @@ async function updateSystem() {
     wakeTime = await convertTime(wakeTimeInput.value);
     sleepTime = await convertTime(sleepTimeInput.value);
 
-    console.log("Script.js waketime: ");
-    console.log(wakeTime)
-    console.log("\n")
+    //console.log("Script.js waketime: ");
+    //console.log(wakeTime)
+    //console.log("\n")
 
     stopDrinkingTime = [...sleepTime];
     stopDrinkingTime[0] -= stopDrinkingHours;
@@ -66,7 +66,7 @@ async function updateSystem() {
     
     scheduleVisual.style.paddingLeft = `${wakeTime[0]}rem`
 
-    console.log("created local variables")
+    //console.log("created local variables")
     store("stopDrinkingTime", stopDrinkingTime);
     store("stopDrinkingHours", stopDrinkingHours);
     store("wakeTime", wakeTime);
@@ -74,9 +74,9 @@ async function updateSystem() {
     store("dailyGoal", dailyGoal);
     store("hourlyWaterGoals", waterGoals);
 
-    console.log("Script.js waketime store: ");
-    console.log(retrieve("wakeTime"))
-    console.log("\n")
+    //console.log("Script.js waketime store: ");
+    //console.log(retrieve("wakeTime"))
+    //console.log("\n")
 
     await visualizeSchedule();
 }
@@ -98,7 +98,7 @@ function change(btn, value) {
     if (parseInt(numInput.value) + value >= numInput.min && parseInt(numInput.value) + value <= numInput.max) {
         numInput.value = parseInt(numInput.value) + parseInt(value);
     }
-    console.log(numInput.value)
+    //console.log(numInput.value)
     updateSystem();
 }
 
@@ -108,10 +108,10 @@ function change(btn, value) {
 // On every new load in, we either create local storage vars, or update form inputs to them.
 if (localStorage.getItem("dailyGoal") == null) {
     // Initialize all of our local variables
-    console.log("no local variables")
+    //console.log("no local variables")
 
 } else {
-    console.log("local variables found");
+    //console.log("local variables found");
     dailyGoal = retrieve("dailyGoal");
     stopDrinkingTime = retrieve("stopDrinkingTime");
     stopDrinkingHours = retrieve("stopDrinkingHours");

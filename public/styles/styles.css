@@ -183,11 +183,15 @@ fieldset {
     width: 12rem;
 }
 
+
+
 .time-goals > label > div:has(#stop-hours-input) {
     display: flex;
     flex-direction: row;
     border-bottom: 1.5px solid #5f4cb5;
-    width: 12rem;
+    width: 100%;
+    height: 5rem;
+
 }
 
 
@@ -652,26 +656,32 @@ div:has(> #schedule-visual) {
 
 .completion-none {
     background-color: rgb(43, 42, 42);
+    color: rgb(43, 42, 42);
 }
 
 .completion-minor {
     background-color: rgb(36, 30, 68);
+    color: rgb(36, 30, 68);
 }
 
 .completion-half {
     background-color: rgb(45, 42, 108);
+    color: rgb(45, 42, 108);
 }
 
 .completion-medium {
     background-color: rgb(38, 55, 147);
+    color: rgb(38, 55, 147);
 }
 
 .completion-almost {
     background-color: rgb(25, 108, 203);
+    color: rgb(25, 108, 203);
 }
 
 .completion-complete {
     background-color: rgb(16, 167, 237);
+    color: rgb(16, 167, 237);
 }
 
 
