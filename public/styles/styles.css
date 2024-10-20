@@ -3,7 +3,7 @@
 
 :root {
     --primary: rgb(39, 157, 254);
-    --secondary: #5f4cb5;
+    --secondary: #432963;
     --deactive: rgb(52, 52, 52);
     --background: rgb(25, 25, 25);
 
@@ -45,6 +45,7 @@ nav .btn {
     background-color: transparent;
     padding: 0;
     color: white;
+    text-decoration: underline;
 }
 
 nav .btn:hover {
@@ -569,13 +570,31 @@ div:has(> #schedule-visual) {
     z-index: 4;
 }
 
+#water-controls {
+    width: 100%;
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+    gap: .5rem;
+}
+
+#water-controls .btn {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+#water-controls .btn span {
+    font-size: 1.5em;
+}
 
 .btn {
     border: none;
     padding: .8rem 1.2rem;
     border-radius: 3rem;
-    color: black;
-    background-color: rgb(95, 76, 181);
+    color: white;
+    background-color: var(--secondary);
     font-weight: bold;
     box-sizing: border-box;
     display: inline-block;
@@ -583,6 +602,7 @@ div:has(> #schedule-visual) {
     cursor: pointer;
     transition: .3s ease;
 }
+
 
 .btn:hover {
     background-color: rgb(121, 77, 192);
