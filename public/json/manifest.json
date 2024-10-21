@@ -1,0 +1,20 @@
+{
+    "short_name": "Water Plus",
+    "name": "Water Plus",
+    "icons": [
+      {
+        "src": "./images/icon-192-maskable.png",
+        "type": "images/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "./images/icon-512-maskable.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "https://water-plus-drab.vercel.app/progress",
+    "background_color": "#279dfe",
+    "display": "standalone",
+    "theme_color": "#279dfe"
+  }

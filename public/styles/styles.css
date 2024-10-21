@@ -2,7 +2,7 @@
 @import url("https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap");
 
 :root {
-    --primary: rgb(39, 157, 254);
+    --primary: #279dfe;
     --secondary: #432963;
     --deactive: rgb(52, 52, 52);
     --background: rgb(25, 25, 25);
@@ -39,6 +39,7 @@ nav {
     display: flex;
     flex-direction: row;
     align-items: center;
+
     padding: 1rem;
     z-index: 100;
 
@@ -66,12 +67,19 @@ nav #logo, nav #account {
     flex: 1;
 }
 
+nav #account {
+    background-color: red;
+    display: flex;
+    justify-content: end;
+}
+
 nav #logo{
     width: 2.6rem;
     height: 2.6rem;
     display: grid;
     justify-content: start;
     align-items: center;
+    
 }
 
 nav #logo i{
