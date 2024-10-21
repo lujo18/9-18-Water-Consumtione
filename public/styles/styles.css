@@ -582,12 +582,13 @@ div:has(> #schedule-visual) {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
 }
 
 
 
 #water-controls .btn span {
-    font-size: 2em;
+    font-size: 1.5em;
     color: white;
 }
 
