@@ -268,16 +268,6 @@ function saveTodayData(date) {
 }
 
 function checkDate() {
-    if (retrieve("lastActive")) {
-        lastActive = new Date(retrieve("lastActive")).getDate()
-        currentActive = new Date().getDate();
-        ////console.log("last: " + lastActive);
-        ////console.log("current: " + currentActive)
-        if (lastActive != currentActive) {
-            resetNewDay();
-        }
-       
-    }
     checkProgressArray(todayDate)
     waterDrank = dailyProgressArray[todayDate.getUTCFullYear()][todayDate.getUTCMonth()][todayDate.getUTCDate()].drank
     totalWaterNum.innerHtml = waterDrank
@@ -364,6 +354,10 @@ setInterval(() => {
     let minutes = todayDate.getMinutes()/60;
     let seconds = todayDate.getSeconds()/60/60;
 
+    if (!retrieve("lastActive") || retrieve("lasActive").getUTCDate() != todayDate.getUTCDate()) {
+        resetNewDay();
+        checkDate();
+    }
     localStorage.setItem("lastActive", JSON.stringify(todayDate))
 
     timeBackground.style.width = `${(hour - 1 + minutes + seconds) * VISUAL_MULTIPLIER}rem`
@@ -372,3 +366,7 @@ setInterval(() => {
 }, 1000)
 
 
+// if statement (lastActive has a value) 
+// if not, then it to the current time
+// if statement (LastActive day != current day) 
+// then run checkd day (reset to new day)
