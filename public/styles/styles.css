@@ -10,6 +10,15 @@
     --font-primary: 'Cabinet Grotesk', sans-serif;
     --font-secondary: 'Satoshi', sans-serif;
 }
+:root {
+    --visual-scale: 2;
+}
+
+@media only screen and (max-device-width: 768px) {
+    :root {
+        --visual-scale: 3;
+    }
+}
 
 * {
     padding: 0;
@@ -390,20 +399,10 @@ div:has(> #schedule-visual) {
 }
 
 
-:root {
-    --visual-scale: 2;
-}
-
 #schedule-visual {
     width: calc(24rem * var(--visual-scale));
     height: calc(2rem * var(--visual-scale));
     position: relative;
-}
-
-@media only screen and (max-device-width: 768px) {
-    :root {
-        --visual-scale: 3;
-    }
 }
 
 
@@ -482,6 +481,7 @@ div:has(> #schedule-visual) {
 #time-tracker {
     width: calc(24rem * var(--visual-scale));
     height: calc(var(--visual-scale) / 2rem);
+    
 }
 
 .goal-progress-cont {
@@ -495,7 +495,7 @@ div:has(> #schedule-visual) {
 
 #time-nob {
     transition: 1s ease-out;
-    transform: translate(calc(-50% + .5px));
+    transform: translateX(calc(-50% + .5px));
     font-size: calc(var(--visual-scale) * .5em);
 }
 

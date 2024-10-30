@@ -56,10 +56,7 @@ function changePieAngle () {
 
     totalWaterNum.innerHTML = waterDrank;
 
-    let now = new Date(retrieve("lastActive")).getUTCDate()
 
-    //console.log(now)
-    
 }
 
 function getDaysInYear(date) {
@@ -154,13 +151,13 @@ function generateYearVisual(date) {
 function setYearVisualBackground(element, date) {
     let dayData = "test";
     try {
-    Object.keys(dailyProgressArray[date.getUTCFullYear()][date.getUTCMonth()][date.getUTCDate()]);
+    Object.keys(dailyProgressArray[date.getUTCFullYear()][date.getUTCMonth()][date.getDate()]);
     }
     catch (e) {
         element.className = 'completion-none';
         return;
     }
-    dayData = dailyProgressArray[date.getUTCFullYear()][date.getUTCMonth()][date.getUTCDate()]
+    dayData = dailyProgressArray[date.getUTCFullYear()][date.getUTCMonth()][date.getDate()]
     let drank = dayData.drank
     let goal = dayData.goal
     let completion = dayData.completion
@@ -230,7 +227,7 @@ function changeYear(direction, element) {
 
     let newYear;
 
-    
+
     let newDate = new Date("1-1-" + newYear)
     
     if (Object.keys(dailyProgressArray)[currentIndex + direction]) {
@@ -245,7 +242,9 @@ function changeYear(direction, element) {
 
 
 function updateYearVisual(date) {
-    let block = document.getElementById(`${date.getUTCMonth()}-${date.getUTCDate()}`);
+    console.log("Update YVis: ")
+    console.log(document.getElementById(`${date.getUTCMonth()}-${date.getDate()}`))
+    let block = document.getElementById(`${date.getUTCMonth()}-${date.getDate()}`);
     setYearVisualBackground(block, date);
 }
 
@@ -258,34 +257,31 @@ function saveTodayData(date) {
         dailyProgressArray = retrieve("dailyProgressArray");
     }
     
-    dailyProgressArray[date.getUTCFullYear()][date.getUTCMonth()][date.getUTCDate()].drank = waterDrank;
-    dailyProgressArray[date.getUTCFullYear()][date.getUTCMonth()][date.getUTCDate()].goal = parseFloat(retrieve("dailyGoal"));
-    dailyProgressArray[date.getUTCFullYear()][date.getUTCMonth()][date.getUTCDate()].completion = waterDrank / parseFloat(retrieve("dailyGoal"))
+    dailyProgressArray[date.getUTCFullYear()][date.getUTCMonth()][date.getDate()].drank = waterDrank;
+    dailyProgressArray[date.getUTCFullYear()][date.getUTCMonth()][date.getDate()].goal = parseFloat(retrieve("dailyGoal"));
+    dailyProgressArray[date.getUTCFullYear()][date.getUTCMonth()][date.getDate()].completion = waterDrank / parseFloat(retrieve("dailyGoal"))
     store("dailyProgressArray", dailyProgressArray)
 
     updateYearVisual(date)
     
 }
 
-function checkDate() {
-    checkProgressArray(todayDate)
-    waterDrank = dailyProgressArray[todayDate.getUTCFullYear()][todayDate.getUTCMonth()][todayDate.getUTCDate()].drank
+async function checkDate() {
+    await checkProgressArray(todayDate)
+    console.log("Today UTC Date: " + todayDate.getDate())
+    waterDrank = dailyProgressArray[todayDate.getUTCFullYear()][todayDate.getUTCMonth()][todayDate.getDate()].drank
     totalWaterNum.innerHtml = waterDrank
-    store("waterDrank", waterDrank);
-    changePieAngle()
-    visualizeSchedule()
+    await store("waterDrank", waterDrank);
+    await changePieAngle()
+    await visualizeSchedule()
 
 }
 
-function resetNewDay() {
-    checkProgressArray(todayDate)
+async function resetNewDay() {
+    await checkProgressArray(todayDate)
     //console.log("Reset New Day:")
     waterDrank = 0;
-    store("waterDrank", waterDrank);
-
-    changePieAngle()
-    visualizeSchedule()
-
+    await store("waterDrank", waterDrank);
 }
 
 function checkProgressArray(date) {
@@ -299,11 +295,11 @@ function checkProgressArray(date) {
     //console.log("Check Progress Array:")
     let year = date.getUTCFullYear();
     let month = date.getUTCMonth();
-    let day = date.getUTCDate();
+    let day = date.getDate();
     //console.log("DATE: : :")
     //console.log(date)
     //console.log(date.getUTCMonth())
-    //console.log(date.getUTCDate())  // FIX ME : the dates are 1 behind because of arrays
+    //console.log(date.getDate())  // FIX ME : the dates are 1 behind because of arrays
     // FIX ME : the id system mistakes 12/1 as 1/21
 
 
@@ -342,28 +338,32 @@ if (retrieve("waterDrank")) {
 
 
 
+setInterval(async () => {
+    todayDate = new Date();
+    let hour = todayDate.getHours();
+    let minutes = todayDate.getMinutes()/60;
+    let seconds = todayDate.getSeconds()/60/60;
+
+    console.log(new Date(retrieve("lastActive")).getDate())
+    console.log(todayDate.getDate())
+    if (!retrieve("lastActive") || new Date(retrieve("lastActive")).getDate() != todayDate.getDate()) {
+        console.log("New Day")
+        //await resetNewDay();
+        await checkDate();
+        await store("lastActive", todayDate)
+    }
+
+    timeBackground.style.width = `${(hour + minutes + seconds) * VISUAL_MULTIPLIER}rem`
+    timeNob.style.marginLeft = `${(hour + minutes + seconds) * VISUAL_MULTIPLIER}rem`
+
+}, 1000)
+
+
 checkDate();
 checkProgressArray(todayDate);
 generateYearVisual(todayDate);
 updateDaysCompletedVisual()
 updateYearArrows(todayDate)
-
-setInterval(() => {
-    let todayDate = new Date();
-    let hour = todayDate.getHours();
-    let minutes = todayDate.getMinutes()/60;
-    let seconds = todayDate.getSeconds()/60/60;
-
-    if (!retrieve("lastActive") || retrieve("lasActive").getUTCDate() != todayDate.getUTCDate()) {
-        resetNewDay();
-        checkDate();
-    }
-    localStorage.setItem("lastActive", JSON.stringify(todayDate))
-
-    timeBackground.style.width = `${(hour - 1 + minutes + seconds) * VISUAL_MULTIPLIER}rem`
-    timeNob.style.marginLeft = `${(hour - 1 + minutes + seconds) * VISUAL_MULTIPLIER}rem`
-
-}, 1000)
 
 
 // if statement (lastActive has a value) 

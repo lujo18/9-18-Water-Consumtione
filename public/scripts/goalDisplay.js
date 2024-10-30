@@ -24,7 +24,12 @@ function goalGrid () {
             time.innerText = i + 1
         }
         else {
-            time.innerText = i + 1 < 13 ? `${i + 1}AM` : `${(i + 1) - 12}PM`;
+            if (i == 0) {
+                time.innerText = 12 + "AM"
+            } else {
+                time.innerText = i < 12 ? `${i}AM` : `${(i) - 12 == 0 ? 12 : i - 12}PM`;
+            }
+            
         }
 
         
